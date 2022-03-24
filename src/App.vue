@@ -17,9 +17,7 @@
     <div class="body-wrapper">
       <create-form class="create-form" @add-product="addProduct"/>
       <div class="products">
-        <transition name="fade" v-for="(product, index) in products" :key="product.id">
-          <product-el  :product="product" @delete-product="deleteProduct(index)"/>
-        </transition>
+          <product-el v-for="(product, index) in products" :key="product.id" :product="product" @delete-product="deleteProduct(index)"/>
       </div>
     </div>
   </div>
@@ -88,11 +86,12 @@ export default {
     }
   },
   created() {
-    if(localStorage.getItem('products') === null) {
-      this.products = this.initialProducts
-    } else {
-      this.products = JSON.parse(localStorage.getItem('products'));
-    }
+    this.products = this.initialProducts
+    // if(localStorage.getItem('products') === null) {
+    //   this.products = this.initialProducts
+    // } else {
+    //   this.products = JSON.parse(localStorage.getItem('products'));
+    // }
   },
   methods: {
     addProduct(value) {
@@ -161,13 +160,6 @@ body {
   gap: 1rem;
   flex-wrap: wrap;
   margin-left: 25rem;
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-.fade-enter, .fade-leave-to {
-  opacity: 0;
 }
 
 .select {
