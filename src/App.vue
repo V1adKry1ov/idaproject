@@ -5,9 +5,9 @@
       <p>По умолчанию</p>
     </div>
     <div class="body-wrapper">
-      <create-form class="create-form"/>
+      <create-form class="create-form" @add-product="addProduct"/>
       <div class="products">
-        <product-el v-for="(product, index) in products" :key="index" :product="product"/>
+        <product-el v-for="(product, index) in products" :key="product.id" :product="product" @delete-product="deleteProduct(index)"/>
       </div>
     </div>
   </div>
@@ -27,42 +27,57 @@ export default {
     return {
       products: [
         {
+          id: Math.random(),
           img: 'https://i.pinimg.com/550x/5b/52/a0/5b52a0667e4a6082d476e9b65f5c82d3.jpg',
           name: 'Наименование товара',
           desc: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
           price: 10000
         },
         {
+          id: Math.random(),
           img: 'https://handcraftguide.com/sites/default/files/styles/original___water/public/sketchingforkids4handcraftguide.com_.jpg?itok=I2Q9q-2e',
           name: 'Наименование товара',
           desc: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
-          price: 10000
+          price: 110000
         },
         {
+          id: Math.random(),
           img: 'https://mirpozitiva.ru/wp-content/uploads/2019/11/1472042718_14.jpg',
           name: 'Наименование товара',
           desc: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
-          price: 10000
+          price: 800
         },
         {
+          id: Math.random(),
           img: 'https://img.kapital.kz/H-Nb-9q3EjU/czM6Ly9rYXBpdGFsLXN0YXRpYy9pbWcvOS8xLzQvMS9kL2JjNjk4MmMwNDQ3NDQxZTIxY2FhMDBkNWI3Zi5qcGc',
           name: 'Наименование товара',
           desc: 'Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк',
-          price: 10000
+          price: 10000000
         },
         {
+          id: Math.random(),
           img: 'https://www.iphones.ru/wp-content/uploads/2021/05/NyanCat.jpg',
           name: 'Наименование товара',
           desc: 'Довольно-таки интересное описание товара в несколько строк. ',
-          price: 10000
+          price: 120
         },
         {
+          id: Math.random(),
           img: 'http://sun9-27.userapi.com/sun9-81/s/v1/if1/zO5oA6Nt-lyk_mEjEBH6ZJFSg4-xMggN9oiad_4UG317hI8rrDYNu0fNPHbXsymcIlKr5ADD.jpg?size=200x219&quality=96&crop=20,0,420,460&ava=1',
           name: 'Наименование товара',
           desc: '',
-          price: 10000
+          price: 10500
         }
       ]
+    }
+  },
+  methods: {
+    addProduct(value) {
+      this.products.push(value)
+    },
+    deleteProduct(index) {
+      console.log(index)
+      this.products.splice(index, 1)
     }
   }
 }
