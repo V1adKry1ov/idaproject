@@ -1,7 +1,7 @@
 <template>
     <div class="create-form">
         <div class="input-div">
-            <p class="form-input-text">Наименование товара</p>
+            <p class="form-input-text form-input-text--required">Наименование товара</p>
             <input type="text" :class="['form-input', isNameProductValide ? '' : 'form-input--invalide']" placeholder="Введите наименование товара" v-model="nameProduct">
             <p v-if="!isNameProductValide" class='primary-text'>Поле является обязательным</p>
         </div>
@@ -10,12 +10,12 @@
             <textarea class="form-textarea" placeholder="Введите описание товара" v-model="descProduct"></textarea>
         </div>
         <div class="input-div">
-            <p class="form-input-text">Ссылка на изображение товара</p>
+            <p class="form-input-text form-input-text--required">Ссылка на изображение товара</p>
             <input type="text" :class="['form-input', isImgProductValide ? '' : 'form-input--invalide']" placeholder="Введите ссылку" v-model="imgProduct">
             <p v-if="!isImgProductValide" class='primary-text'>Поле является обязательным</p>
         </div>
         <div class="input-div">
-            <p class="form-input-text">Цена товара</p>
+            <p class="form-input-text form-input-text--required">Цена товара</p>
             <input type="text" :class="['form-input', isPriceProductValide ? '' : 'form-input--invalide']" placeholder="Введите цену" v-model="maskPrice"
                 @focus="changePrice = true"
                 @blur="changePrice = false"
@@ -89,6 +89,7 @@ export default {
 <style lang="scss" scoped>
 @use "src/consts/colors" as colors;
 .create-form {
+    position: fixed;
     display: flex;
     flex-direction: column;
     gap: 1rem;
@@ -102,17 +103,16 @@ export default {
     display: flex;
     flex-direction: column;
     gap: .25rem    
+    
 }
 .form-input-text {
     color: colors.$black-secondary;
     font-size: .625rem;
     line-height: 0.8125rem;
-}
-.form-input-text::after {
-    content: "";
-    background: red;
-    height: 4px;
-    width: 4px;
+    &--required::after {
+        color: colors.$red-primary;
+        content: " *";
+    }
 }
 .form-input {
     padding: 0.625rem 1rem .625rem 1rem;
@@ -123,6 +123,11 @@ export default {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 0.75rem;
     line-height: 0.9375rem;
+    transition: all .25s cubic-bezier(.02,.01,.47,1);
+
+    &:hover {
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+    }
 
     &--invalide {
         border: 1px solid colors.$red-primary;
@@ -140,6 +145,11 @@ export default {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 0.75rem;
     line-height: 0.9375rem;
+    transition: all .25s cubic-bezier(.02,.01,.47,1);
+
+    &:hover {
+        box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.4);
+    }
 }
 
 .primary-text {
@@ -168,5 +178,9 @@ export default {
         color: colors.$grey-primary;
     }
 }
-
+@media screen and (max-width: 800px) {
+  .create-form {
+      position: static;
+  }
+}
 </style>

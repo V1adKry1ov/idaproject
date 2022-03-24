@@ -59,6 +59,12 @@ export default {
     background: colors.$white-primary;
     box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.04), 0px 6px 10px rgba(0, 0, 0, 0.02);
     border-radius: 4px;
+    transition: all .25s cubic-bezier(.02,.01,.47,1);
+
+    &:hover {
+        box-shadow: 0px 20px 30px rgba(0, 0, 0, 0.1), 0px 6px 10px rgba(0, 0, 0, 0.08);
+        transition-delay: 0s !important;
+    }
 
     &__img {
         width: 20.75rem;
@@ -120,4 +126,5 @@ export default {
     height: 2rem;
     background: colors.$red-primary;
 }
+
 </style>
