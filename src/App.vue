@@ -86,12 +86,11 @@ export default {
     }
   },
   created() {
-    this.products = this.initialProducts
-    // if(localStorage.getItem('products') === null) {
-    //   this.products = this.initialProducts
-    // } else {
-    //   this.products = JSON.parse(localStorage.getItem('products'));
-    // }
+    if(localStorage.getItem('products') === null) {
+      this.products = this.initialProducts
+    } else {
+      this.products = JSON.parse(localStorage.getItem('products'));
+    }
   },
   methods: {
     addProduct(value) {
